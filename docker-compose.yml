@@ -1,0 +1,19 @@
+services:
+  app:
+    image: golang:latest
+    container_name: golangtest
+    volumes:
+      - $HOME/workspace/uninassau/tracking:/app
+    working_dir: /app
+    command: go run main.go
+    ports:
+      - "8080:8080"
+  
+  mysql_db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: tracking
+    ports:
+      - "3306:3306"
